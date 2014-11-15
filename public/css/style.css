@@ -1,0 +1,51 @@
+.left-panel {
+
+}
+
+.right-panel {
+	height:100%;
+}
+
+.on-icon {
+	width:50px;
+	height:50px;
+	position:relative;
+	left:45%;
+	background-color: #74d600;
+	border-radius: 100%;
+	margin-top: 7%;
+}
+
+.on-icon-text {
+	text-align:center;
+	padding-top:26%;
+	font-weight: bold;
+	color: white;
+}
+
+.chart-container { 
+	position:relative;
+	left:13.75%;
+}
+
+.state-container {
+	position:relative;
+	top:20%;
+}
+
+.chart-figure {
+	position: absolute;
+	top: 52%;
+	font-weight: bold;
+	left: 42.5%;
+	font-size: xx-large;
+}
+
+.top-title {
+	text-align: center;
+}
+
+.plot-title {
+	margin:5% 0 10% 0;
+}
+

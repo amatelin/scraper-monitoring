@@ -39,20 +39,9 @@ exports.findAll = function(req, res) {
 exports.count = function(req, res) {
 	db.collection('profiles', function(err, collection) {
 		collection.count(function(err, nbr) {
-			//res.send(nbr);
-			console.log(nbr);
-			res.render('Index', {title:'Hey', message:nbr});
+			console.log("Profiles processed : "+nbr);
+			res.send(nbr);
 		});
 	});
+
 };
-/*
-exports.count = function(req, res) {
-	db.collection('profiles', function(err, collection){
-		collection.count(function(err, out){
-			console.log("youyou");
-			console.log(out);
-			res.send(out);
-		});
-	});
-};*/
- 
