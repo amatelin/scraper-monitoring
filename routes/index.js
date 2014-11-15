@@ -36,8 +36,9 @@ exports.render = function(req, res) {
 								collection.find({"profiles_processed":-1}).count(function(err, nbr) {
 									console.log("Nbr streets with error : "+nbr);
 									data.push(nbr);
+									var nbr_profiles = data[0]
 									var percent = Math.round((data[1]/data[2])*100)			
-									res.render('Index', {title:'Scraper Monitor', figures:data, percentage:percent});						
+									res.render('Index', {title:'Scraper Monitor', figures:data, percentage:percent, nbr_profiles:nbr_profiles});						
 								});
 							});
 						});

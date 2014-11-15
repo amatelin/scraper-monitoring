@@ -1,5 +1,97 @@
 html
+
 	head
 		title!= title
+		link(href="css/bootstrap.min.css", rel="stylesheet")
+		link(href="css/style.css", rel="stylesheet")
+		script(src="/js/jquery.min.js")
+		script(src="/js/Chart.min.js")
+
+
 	body
-		h1!= message
+		div(class="navbar navbar-default")
+			div(class="container")
+				div(class="navbar-header")
+					a(href="#" class="navbar-brand") Scraper monitoring console
+		div(class="container")
+			div(class="row")
+				div(class="col-md-6 left-panel")
+					h2(class="top-title plot-title") Progress
+					h3(class="chart-figure")!= percentage+'%'
+					div(class="chart-container")
+						canvas(id="myChart", width="400", height="400")
+				div(class="col-md-6 right-panel")
+						div
+							h2(class="top-title plot-title") Total :
+								small(class="s1")!=nbr_profiles
+						div(class="state-container")
+							h3(class="top-title state-title") The scraper is :
+							div(class="on-icon")
+								h4(class="on-icon-text") up 
+
+					
+
+		script.
+			var db_data =!{JSON.stringify(figures)}
+
+			var data = [
+				{
+					value: db_data[1],
+					color:"#74d600",
+					highlight: "#028900",
+					label: "Streets processed"
+				},
+				{
+					value: db_data[2],
+					color: "#d2d4dc",
+					highlight: "#afafaf",
+					label: "Streets remaining"
+				},
+				{
+					value: db_data[3],
+					color: "#FF1919",
+					highlight: "#CC1414",
+					label: "Errors"
+				},
+					]
+
+			var options = {
+				//Boolean - Whether we should show a stroke on each segment
+				segmentShowStroke : true,
+
+				//String - The colour of each segment stroke
+				segmentStrokeColor : "#fff",
+
+				//Number - The width of each segment stroke
+				segmentStrokeWidth : 2,
+
+				//Number - The percentage of the chart that we cut out of the middle
+				percentageInnerCutout : 50, // This is 0 for Pie charts
+
+				//Number - Amount of animation steps
+				animationSteps : 100,
+
+				//String - Animation easing effect
+				animationEasing : "easeOutBounce",
+
+				//Boolean - Whether we animate the rotation of the Doughnut
+				animateRotate : true,
+
+				//Boolean - Whether we animate scaling the Doughnut from the centre
+				animateScale : false,
+
+				//String - A legend template
+				legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+
+			} 
+
+			var ctx = $("#myChart").get(0).getContext("2d");
+
+			// And for a doughnut chart
+			var myDoughnutChart = new Chart(ctx).Doughnut(data,options);
+
+
+
+
+
+
