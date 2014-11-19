@@ -23,32 +23,36 @@ html
 				div(class="col-md-6 right-panel")
 						div
 							h2(class="top-title plot-title") Total :
-								small(class="s1")!=nbr_profiles
+								small(class="s1")!=nbr_profiles_processed
 						div(class="state-container")
 							h3(class="top-title state-title") The scraper is :
-							div(class="on-icon")
-								h4(class="on-icon-text") up 
+							if (status==1)
+								div(class="on-icon")
+									h4(class="status-icon-text") up
+							else
+								div(class="off-icon")
+									h4(class="status-icon-text") down
 
 					
 
 		script.
-			var db_data =!{JSON.stringify(figures)}
+			var db_data =!{JSON.stringify(mongo_data)}
 
 			var data = [
 				{
-					value: db_data[1],
+					value: db_data.nbr_streets_processed,
 					color:"#74d600",
 					highlight: "#028900",
 					label: "Streets processed"
 				},
 				{
-					value: db_data[2],
+					value: db_data.nbr_streets_remaining,
 					color: "#d2d4dc",
 					highlight: "#afafaf",
 					label: "Streets remaining"
 				},
 				{
-					value: db_data[3],
+					value: db_data.nbr_errors,
 					color: "#FF1919",
 					highlight: "#CC1414",
 					label: "Errors"
